@@ -14,9 +14,9 @@ const isMember = async (email) => {
                     );
                     return "valid"; // Call the next middleware if the member is valid
                 }
-                return "Student number not found";
+                return "Incorrect credentials";
             }
-            return "Incorrect DHVSU email";
+            return "Incorrect credentials";
         }
         return "Email is required";
     } catch (error) {
