@@ -2,7 +2,6 @@ import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
 import authRouter from "./routes/authRoutes.js";
-import { handleErrors } from "./middleware/authMiddleware.js";
 
 // IPv6 address
 // mongodb://localhost:27017/freedom-wall-db
