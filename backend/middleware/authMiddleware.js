@@ -1,6 +1,7 @@
 import Member from "../models/Member.js";
 
-const isMember = async (email) => {
+const isMember = async (req, res, next) => {
+    const { email } = req.body;
     try {
         if (email) {
             const regex = new RegExp(process.env.secretPattern);
@@ -12,13 +13,14 @@ const isMember = async (email) => {
                     console.log(
                         `${match.firstname} ${match.lastname} is verified as a true member`
                     );
-                    return "valid"; // Call the next middleware if the member is valid
+                    return next();
                 }
-                return "Incorrect credentials";
+                return next(Error("Incorrect credentials"));
             }
-            return "Incorrect credentials";
+            return next(Error("Incorrect credentials"));
         }
-        return "Email is required";
+        // email will be catched later, this is useless
+        next();
     } catch (error) {
         console.log(error);
     }
@@ -27,7 +29,8 @@ const isMember = async (email) => {
 const handleErrors = (err) => {
     let errors = {};
 
-    if (err.message) errors["message"] = err.message;
+    if (err.message === "Incorrect credentials")
+        errors["message"] = err.message;
 
     if (err.code === 11000) {
         errors["email"] = "Email already exists";
