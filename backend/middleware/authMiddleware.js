@@ -14,7 +14,7 @@ const isMember = async (email) => {
                     );
                     return "valid"; // Call the next middleware if the member is valid
                 }
-                return "Incorrect credentials";
+                return "Student number not found";
             }
             return "Incorrect DHVSU email";
         }
@@ -27,11 +27,7 @@ const isMember = async (email) => {
 const handleErrors = (err) => {
     let errors = {};
 
-    if (err.message === "Incorrect credentials")
-        errors["message"] = err.message;
-
-    if (err.message === "Incorrect DHVSU email")
-        errors["message"] = err.message;
+    if (err.message) errors["message"] = err.message;
 
     if (err.code === 11000) {
         errors["email"] = "Email already exists";
