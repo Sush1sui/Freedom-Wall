@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { handleLogin, handleRegister } from "../controllers/authControllers.js";
-import { isMember } from "../middleware/authMiddleware.js";
+import { handleLogin, handleRegister } from "../controllers/authControllers";
+import { isMember } from "../middleware/authMiddleware";
 const router = Router();
 
 router.post("/register", isMember, handleRegister);
