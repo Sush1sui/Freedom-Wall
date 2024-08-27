@@ -1,18 +1,22 @@
-import { handleErrors, isMember } from "../middleware/authMiddleware.js";
-import User from "../models/User.js";
+import { NextFunction, Response, Request } from "express";
+import User from "../models/User";
 
-const handleRegister = async (req, res, next) => {
+const handleRegister = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
     try {
         const { email, password } = req.body;
 
         const user = await User.create({ email, password });
         return res.status(201).json({ user });
     } catch (error) {
-        next(error);
+        return next(error);
     }
 };
 
-const handleLogin = async (req, res, next) => {
+const handleLogin = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { email, password } = req.body;
         // uses static method
@@ -20,7 +24,7 @@ const handleLogin = async (req, res, next) => {
         const user = await User.login(email, password);
         res.status(200).json({ message: `${user.email} has logged in` });
     } catch (error) {
-        next(error);
+        return next(error);
     }
 };
 

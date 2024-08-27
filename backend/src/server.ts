@@ -1,8 +1,9 @@
 import "dotenv/config";
-import express from "express";
+import express, { NextFunction, Response, Request } from "express";
 import mongoose from "mongoose";
-import authRouter from "./routes/authRoutes.js";
-import { handleErrors } from "./middleware/authMiddleware.js";
+import authRouter from "./routes/authRoutes";
+import { handleErrors } from "./middleware/authMiddleware";
+import { AppError } from "./models/Types/AppError";
 
 // IPv6 address
 // mongodb://localhost:27017/freedom-wall-db
@@ -18,7 +19,7 @@ app.use(express.json());
 app.use("/", authRouter);
 
 // global error handler
-app.use((err, req, res, next) => {
+app.use((err: AppError, _req: Request, res: Response, _next: NextFunction) => {
     const errors = handleErrors(err);
     res.status(err.status || 500).json({
         errors,
