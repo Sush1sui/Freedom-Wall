@@ -7,7 +7,7 @@ const Burger = () => {
 
     return (
         <div
-            className="fixed z-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 shadow-lg shadow-violet-800/20 transition-all duration-300"
+            className="fixed z-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 shadow-lg shadow-blue-800/20 transition-all duration-300"
             style={
                 isOpen
                     ? {
@@ -25,7 +25,7 @@ const Burger = () => {
             }
         >
             <button
-                className="group fixed right-4 top-4 z-50 h-20 w-20 bg-white/0 transition-all hover:bg-white/20 rounded-xl"
+                className="group fixed right-4 top-4 z-50 h-20 w-20 bg-white/0 transition-all hover:bg-white/20 rounded-x"
                 onClick={() => setIsOpen((o) => !o)}
             >
                 <span
@@ -84,6 +84,23 @@ const Burger = () => {
                             about.
                         </a>
                     </div>
+                    <button className="absolute bottom-2 right-2 flex items-center gap-2 rounded-full bg-blue-700 px-3 py-3 text-4xl uppercase text-blue-200 transition-colors hover:bg-white hover:text-blue-600 md:bottom-4 md:right-4 md:px-6 md:text-2xl">
+                        <span className="hidden md:block">More Info</span>
+                        <svg
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            height="1em"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
                 </nav>
             )}
         </div>
