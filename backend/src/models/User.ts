@@ -35,6 +35,9 @@ userSchema.statics.login = async function (
     email,
     password
 ): Promise<CustomUserType> {
+    if (!email) throw new Error("Email is required");
+    if (!password) throw new Error("Password is required");
+
     // refer to user model, not the instance
     const user = await this.findOne({ email });
 
