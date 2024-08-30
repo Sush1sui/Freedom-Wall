@@ -2,10 +2,12 @@ import React from "react";
 import Form from "../components/Form";
 import Burger from "../components/Burger";
 import "../index.css";
+import ErrorModal from "../components/ErrorModal";
 
 export default function Login() {
     return (
         <div className="flex w-full h-screen">
+            <ErrorModal />
             <div className="w-full flex items-center justify-center lg:w-1/2 py-28">
                 <Form type="login" />
             </div>

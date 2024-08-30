@@ -3,6 +3,7 @@ import logoImage from "../assets/images/Paper-notes.svg";
 import Input from "./Input";
 import SubmitButton from "./SubmitButton";
 import { Link } from "react-router-dom";
+import { CiWarning } from "react-icons/ci";
 
 type Props = { type: "login" | "register" };
 
@@ -23,6 +24,14 @@ const Form = ({ type }: Props) => {
                             : "Register your account"
                     }
                 </h2>
+                <div className="bg-red-200 px-3 py-2 mt-3 rounded-md">
+                    <div className="flex items-center gap-2">
+                        <CiWarning className="text-red-700" />
+                        <h3 className="text-red-700">
+                            Please complete all details
+                        </h3>
+                    </div>
+                </div>
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
