@@ -43,7 +43,12 @@ const VARIANTS = {
     },
 };
 
-const Burger = () => {
+interface Props {
+    width: string;
+    height: string;
+}
+
+const Burger = ({ width, height }: Props) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (
@@ -55,8 +60,8 @@ const Burger = () => {
                     ? {
                           top: "16px",
                           right: "16px",
-                          width: "calc(50% - 32px)",
-                          height: "calc(-32px + 100vh)",
+                          width: width,
+                          height: height,
                       }
                     : {
                           top: "16px",
@@ -124,7 +129,7 @@ const Burger = () => {
                     <nav className="fixed right-4 top-4 z-40 h-[calc(100vh_-_32px)] w-[calc(50%_-_32px)] overflow-hidden font-poppins">
                         <motion.a
                             href="#"
-                            className="grid h-20 w-20 place-content-center rounded-br-xl rounded-tl-xl bg-white transition-colors hover:bg-blue-50"
+                            className="grid e h-20 w-20 place-content-center rounded-br-xl rounded-tl-xl bg-white transition-colors hover:bg-blue-50"
                             key="pic"
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -141,10 +146,10 @@ const Burger = () => {
                                 className="w-10"
                             />
                         </motion.a>
-                        <div className="space-y-4 p-12 pl-4 md:pl-20">
+                        <div className="space-y-4 p-6 pl-4 md:pl-20 md:p-8 text-center md:text-left">
                             <motion.a
                                 href="#"
-                                className="block text-5xl font-semibold text-blue-400 transition-colors hover:text-violet-50 md:text-7xl"
+                                className="block text-3xl font-semibold text-blue-400 transition-colors hover:text-violet-50 md:text-7xl"
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
@@ -158,7 +163,7 @@ const Burger = () => {
                             </motion.a>
                             <motion.a
                                 href="#"
-                                className="block text-5xl font-semibold text-blue-400 transition-colors hover:text-violet-50 md:text-7xl"
+                                className="block text-3xl font-semibold text-blue-400 transition-colors hover:text-violet-50 md:text-7xl"
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
@@ -172,7 +177,7 @@ const Burger = () => {
                             </motion.a>
                             <motion.a
                                 href="#"
-                                className="block text-5xl font-semibold text-blue-400 transition-colors hover:text-violet-50 md:text-7xl"
+                                className="block text-3xl font-semibold text-blue-400 transition-colors hover:text-violet-50 md:text-7xl align-middle"
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
@@ -186,7 +191,7 @@ const Burger = () => {
                             </motion.a>
                         </div>
                         <motion.button
-                            className="absolute bottom-2 right-2 flex items-center gap-2 rounded-full bg-blue-700 px-3 py-3 text-4xl uppercase text-blue-200 transition-colors hover:bg-white hover:text-blue-600 md:bottom-4 md:right-4 md:px-6 md:text-2xl"
+                            className="absolute bottom-2 right-2 flex items-center gap-2 rounded-full bg-blue-700 px-3 py-3 text-1xl uppercase text-blue-200 transition-colors hover:bg-white hover:text-blue-600 md:bottom-4 md:right-4 md:px-6 md:text-2xl"
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
