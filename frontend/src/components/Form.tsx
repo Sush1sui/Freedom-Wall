@@ -82,7 +82,7 @@ const Form = ({ type }: Props) => {
                 )
             }
             <ErrorModal errorSubmission={invalidCredentials} />
-            <div className="flex w-2/3 min-h-full flex-col justify-center py-4 px-8 bg-white drop-shadow-lg rounded-lg">
+            <div className="flex w-2/3 min-h-full flex-col justify-center py-4 px-8 bg-white shadow-lg shadow-black-800/20 rounded-lg">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
                         className="mx-auto h-10 w-auto hover:scale-125 transition-all duration-300"
