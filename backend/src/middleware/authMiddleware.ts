@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Member from "../models/Member";
 import "dotenv/config";
-import mongoose, { Error, MongooseError } from "mongoose";
+import mongoose, { Error } from "mongoose";
 import { MongoServerError } from "mongodb";
 
 const isMember = async (req: Request, _res: Response, next: NextFunction) => {
@@ -25,10 +25,16 @@ const isMember = async (req: Request, _res: Response, next: NextFunction) => {
             }
             return next(new Error("Use DHVSU email"));
         }
-        // email will be catched later, this is useless
-        next();
+        // email will be catched later
+        return next();
     } catch (error) {
-        console.log(error);
+        console.error("Caught error:", error);
+        const errorDetails = handleErrors(
+            error as MongoServerError | mongoose.Error.ValidationError
+        );
+        console.log("Handled error details:", errorDetails);
+
+        return next(error);
     }
 };
 
@@ -44,12 +50,6 @@ const handleErrors = (
 
     if (err.message === "Incorrect credentials") {
         errors["message"] = err.message;
-    } else if (err instanceof MongooseError) {
-        errors["message"] = err.message;
-    }
-
-    if (err instanceof MongoServerError && err.code && err.code === 11000) {
-        errors["email"] = "Email already exists";
         return errors;
     }
 
@@ -62,6 +62,7 @@ const handleErrors = (
                 errors[error.path] = error.message;
             }
         });
+        return errors;
     }
 
     return errors;
