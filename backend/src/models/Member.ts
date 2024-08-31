@@ -7,9 +7,15 @@ const memberSchema = new mongoose.Schema({
     },
     firstname: {
         type: String,
+        required: true,
     },
     lastname: {
         type: String,
+        required: true,
+    },
+    isAdmin: {
+        type: Boolean,
+        required: true,
     },
 });
 

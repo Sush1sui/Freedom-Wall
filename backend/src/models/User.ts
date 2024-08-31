@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
         required: [true, "Password is required"],
         minLength: [12, "Password should be at least 12 characters"],
     },
+    isAdmin: {
+        type: Boolean,
+        required: true,
+    },
 });
 
 // runs after doc is saved to db
