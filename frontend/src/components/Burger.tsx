@@ -53,7 +53,7 @@ const Burger = ({ width, height }: Props) => {
 
     return (
         <motion.div
-            className="fixed z-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 shadow-lg shadow-blue-800/20 transition-color"
+            className="lg:hidden fixed z-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 shadow-lg shadow-blue-800/20 transition-color"
             initial={false}
             animate={
                 isOpen
