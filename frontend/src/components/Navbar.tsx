@@ -8,33 +8,33 @@ const Navbar = () => {
         <nav className="hidden lg:flex bg-white p-4 border-b-[1px] border-gray-200 flex items-center justify-between">
             <div className="flex items-center gap-6">
                 <FaNoteSticky color="#3b82f6" size={40} />
-                <a
+                <Link
                     className="hidden lg:block h-[30px] overflow-hidden font-medium"
-                    href="#"
+                    to="/home"
                     rel="nofollow"
                 >
                     <span className="flex items-center h-[30px] text-blue-600">
                         Home
                     </span>
-                </a>
-                <a
+                </Link>
+                <Link
                     className="hidden lg:block h-[30px] overflow-hidden font-medium"
-                    href="#"
+                    to="/about"
                     rel="nofollow"
                 >
                     <span className="flex items-center h-[30px] text-blue-600">
                         About
                     </span>
-                </a>
-                <a
+                </Link>
+                <Link
                     className="hidden lg:block h-[30px] overflow-hidden font-medium"
-                    href="#"
+                    to="/contact"
                     rel="nofollow"
                 >
                     <span className="flex items-center h-[30px] text-blue-600">
                         Contact
                     </span>
-                </a>
+                </Link>
             </div>
             <div className="flex items-center gap-4">
                 <Link
