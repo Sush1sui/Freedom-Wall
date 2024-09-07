@@ -1,42 +1,6 @@
-import { NextFunction, Request, Response } from "express";
-import Member from "../models/Member";
 import "dotenv/config";
-import mongoose, { Error } from "mongoose";
+import mongoose from "mongoose";
 import { MongoServerError } from "mongodb";
-
-const isMember = async (req: Request, _res: Response, next: NextFunction) => {
-    const { email } = req.body;
-    try {
-        if (!process.env.secretPattern)
-            throw new Error("No pattern to verify email");
-        if (email) {
-            const regex = new RegExp(process.env.secretPattern);
-            const verifyPattern = email.match(regex);
-
-            if (verifyPattern) {
-                const match = await Member.findOne({ SN: verifyPattern[1] });
-                if (match) {
-                    console.log(
-                        `${match.firstname} ${match.lastname} is verified as a true member`
-                    );
-                    return next();
-                }
-                return next(new Error("You are not from BSCS 3B"));
-            }
-            return next(new Error("Use DHVSU email"));
-        }
-        // email will be catched later
-        return next();
-    } catch (error) {
-        console.error("Caught error:", error);
-        const errorDetails = handleErrors(
-            error as MongoServerError | mongoose.Error.ValidationError
-        );
-        console.log("Handled error details:", errorDetails);
-
-        return next(error);
-    }
-};
 
 type HandleErrorType = {
     message?: string;
@@ -68,4 +32,4 @@ const handleErrors = (
     return errors;
 };
 
-export { handleErrors, isMember };
+export { handleErrors };
