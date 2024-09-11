@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import logoImage from "../assets/images/Paper-notes.svg";
 import Input from "./Input";
 import SubmitButton from "./SubmitButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ErrorContainer from "./ErrorContainer";
 import ErrorModal from "./ErrorModal";
 
@@ -21,8 +21,7 @@ const Form = ({ type }: Props) => {
         useState<boolean>(false);
     const [errors, setErrors] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
-    useEffect(() => {}, [invalidCredentials]);
+    const navigate = useNavigate();
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -62,6 +61,8 @@ const Form = ({ type }: Props) => {
 
             console.log(data);
             setIsLoading(false);
+
+            if (type === "login") navigate("/");
         } catch (error) {
             if (type === "login") setInvalidCredentials(true);
             console.log(error);

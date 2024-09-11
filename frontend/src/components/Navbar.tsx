@@ -11,7 +11,7 @@ const Navbar = () => {
                 <FaNoteSticky color="#3b82f6" size={40} />
                 <Link
                     className="hidden lg:block h-[30px] overflow-hidden font-medium"
-                    to="/home"
+                    to="/"
                     rel="nofollow"
                 >
                     <span className="flex items-center h-[30px] text-blue-600 ">
