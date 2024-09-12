@@ -1,6 +1,5 @@
 import { NextFunction, Response, Request } from "express";
 import User from "../models/User";
-import "dotenv/config";
 
 const handleRegister = async (
     req: Request,

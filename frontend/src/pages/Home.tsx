@@ -1,10 +1,36 @@
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import OutlinedCard from "../components/OutlinedCard";
 import { Box } from "@mui/material";
 
+type PostType = {
+    title: string;
+    body: string;
+    createdAt: string;
+};
+
 export default function Home() {
+    const [posts, setPosts] = useState<PostType[]>([]);
+
+    useEffect(() => {
+        async function fetchPosts() {
+            try {
+                const res = await fetch("http://localhost:3000/posts");
+                if (!res.ok)
+                    throw new Error(
+                        "There is something wrong with fetching posts"
+                    );
+                const data = await res.json();
+                console.log(data);
+                setPosts(data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchPosts();
+    }, []);
+
     return (
         <>
             <Navbar />
@@ -17,61 +43,20 @@ export default function Home() {
                     padding: 4, // Optional padding around the container
                 }}
             >
-                <OutlinedCard
-                    title="Hello World"
-                    body="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam quam pariatur quas obcaecati ducimus quae deleniti corrupti nostrum impedit vel architecto nulla ex totam non vitae, officiis numquam molestiae voluptatum?
-Nemo voluptas fuga, hic quidem sed corporis aspernatur sequi asperiores eaque, soluta sit cumque facere quaerat dolores rem veritatis repellendus. Eos asperiores architecto expedita sequi! Enim incidunt quia mollitia minus!"
-                />
-                <OutlinedCard
-                    title="Hello World"
-                    body="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam quam pariatur quas obcaecati ducimus quae deleniti corrupti nostrum impedit vel architecto nulla ex totam non vitae, officiis numquam molestiae voluptatum?
-Nemo voluptas fuga, hic quidem sed corporis aspernatur sequi asperiores eaque, soluta sit cumque facere quaerat dolores rem veritatis repellendus. Eos asperiores architecto expedita sequi! Enim incidunt quia mollitia minus!"
-                />
-                <OutlinedCard
-                    title="Hello World"
-                    body="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam quam pariatur quas obcaecati ducimus quae deleniti corrupti nostrum impedit vel architecto nulla ex totam non vitae, officiis numquam molestiae voluptatum?
-Nemo voluptas fuga, hic quidem sed corporis aspernatur sequi asperiores eaque, soluta sit cumque facere quaerat dolores rem veritatis repellendus. Eos asperiores architecto expedita sequi! Enim incidunt quia mollitia minus!"
-                />
-                <OutlinedCard
-                    title="Hello World"
-                    body="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam quam pariatur quas obcaecati ducimus quae deleniti corrupti nostrum impedit vel architecto nulla ex totam non vitae, officiis numquam molestiae voluptatum?
-Nemo voluptas fuga, hic quidem sed corporis aspernatur sequi asperiores eaque, soluta sit cumque facere quaerat dolores rem veritatis repellendus. Eos asperiores architecto expedita sequi! Enim incidunt quia mollitia minus!"
-                />
-                <OutlinedCard
-                    title="Hello World"
-                    body="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam quam pariatur quas obcaecati ducimus quae deleniti corrupti nostrum impedit vel architecto nulla ex totam non vitae, officiis numquam molestiae voluptatum?
-Nemo voluptas fuga, hic quidem sed corporis aspernatur sequi asperiores eaque, soluta sit cumque facere quaerat dolores rem veritatis repellendus. Eos asperiores architecto expedita sequi! Enim incidunt quia mollitia minus!"
-                />
-                <OutlinedCard
-                    title="Hello World"
-                    body="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam quam pariatur quas obcaecati ducimus quae deleniti corrupti nostrum impedit vel architecto nulla ex totam non vitae, officiis numquam molestiae voluptatum?
-Nemo voluptas fuga, hic quidem sed corporis aspernatur sequi asperiores eaque, soluta sit cumque facere quaerat dolores rem veritatis repellendus. Eos asperiores architecto expedita sequi! Enim incidunt quia mollitia minus!"
-                />
-                <OutlinedCard
-                    title="Hello World"
-                    body="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam quam pariatur quas obcaecati ducimus quae deleniti corrupti nostrum impedit vel architecto nulla ex totam non vitae, officiis numquam molestiae voluptatum?
-Nemo voluptas fuga, hic quidem sed corporis aspernatur sequi asperiores eaque, soluta sit cumque facere quaerat dolores rem veritatis repellendus. Eos asperiores architecto expedita sequi! Enim incidunt quia mollitia minus!"
-                />
-                <OutlinedCard
-                    title="Hello World"
-                    body="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam quam pariatur quas obcaecati ducimus quae deleniti corrupti nostrum impedit vel architecto nulla ex totam non vitae, officiis numquam molestiae voluptatum?
-Nemo voluptas fuga, hic quidem sed corporis aspernatur sequi asperiores eaque, soluta sit cumque facere quaerat dolores rem veritatis repellendus. Eos asperiores architecto expedita sequi! Enim incidunt quia mollitia minus!"
-                />
-                <OutlinedCard
-                    title="Hello World"
-                    body="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam quam pariatur quas obcaecati ducimus quae deleniti corrupti nostrum impedit vel architecto nulla ex totam non vitae, officiis numquam molestiae voluptatum?
-Nemo voluptas fuga, hic quidem sed corporis aspernatur sequi asperiores eaque, soluta sit cumque facere quaerat dolores rem veritatis repellendus. Eos asperiores architecto expedita sequi! Enim incidunt quia mollitia minus!"
-                />
-                <OutlinedCard
-                    title="Hello World"
-                    body="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam quam pariatur quas obcaecati ducimus quae deleniti corrupti nostrum impedit vel architecto nulla ex totam non vitae, officiis numquam molestiae voluptatum?
-Nemo voluptas fuga, hic quidem sed corporis aspernatur sequi asperiores eaque, soluta sit cumque facere quaerat dolores rem veritatis repellendus. Eos asperiores architecto expedita sequi! Enim incidunt quia mollitia minus!"
-                />
-                <OutlinedCard
-                    title="Hello World"
-                    body="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam quam pariatur quas obcaecati ducimus quae deleniti corrupti nostrum impedit vel architecto nulla ex totam non vitae, officiis numquam molestiae voluptatum?
-Nemo voluptas fuga, hic quidem sed corporis aspernatur sequi asperiores eaque, soluta sit cumque facere quaerat dolores rem veritatis repellendus. Eos asperiores architecto expedita sequi! Enim incidunt quia mollitia minus!"
-                />
+                {
+                    // RENDERS POST
+                    posts.length ? (
+                        posts.map((post) => (
+                            <OutlinedCard
+                                title={post.title}
+                                date={post.createdAt}
+                                body={post.body}
+                            />
+                        ))
+                    ) : (
+                        <div>There are no posts</div> // ELSE STATEMENT IF POST LENGTH === 0
+                    )
+                }
             </Box>
         </>
     );

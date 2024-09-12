@@ -9,9 +9,10 @@ import { Link } from "react-router-dom";
 type OutlinedCardProps = {
     title: string;
     body: string;
+    date: string;
 };
 
-export default function OutlinedCard({ title, body }: OutlinedCardProps) {
+export default function OutlinedCard({ title, body, date }: OutlinedCardProps) {
     return (
         <Box
             sx={{
@@ -36,8 +37,7 @@ export default function OutlinedCard({ title, body }: OutlinedCardProps) {
                         gutterBottom
                         sx={{ color: "text.secondary", fontSize: 14 }}
                     >
-                        {new Date().toLocaleDateString()}
-                        {/* Format the date */}
+                        {date}
                     </Typography>
                     <Typography
                         variant="body2"

@@ -2,6 +2,7 @@ import "dotenv/config";
 import express, { NextFunction, Response, Request } from "express";
 import mongoose from "mongoose";
 import authRouter from "./routes/authRoutes";
+import postRoutes from "./routes/postRoutes";
 import { handleErrors } from "./middleware/authMiddleware";
 import { AppError } from "./models/Types/AppError";
 import cors from "cors";
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/", authRouter);
+app.use("/posts", postRoutes);
 
 // global error handler
 app.use((err: AppError, _req: Request, res: Response, _next: NextFunction) => {
